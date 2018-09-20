@@ -21,7 +21,6 @@ public class MiyaoImpl implements MiyaoDao {
             preparedStatement = connection.prepareStatement("INSERT INTO miyao(value) VALUES(?);");
             preparedStatement.setString(1,value);
             row = preparedStatement.executeUpdate();
-            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
@@ -45,7 +44,6 @@ public class MiyaoImpl implements MiyaoDao {
             preparedStatement = connection.prepareStatement("DELETE FROM miyao WHERE id = ?");
             preparedStatement.setInt(1,id);
             row = preparedStatement.executeUpdate();
-            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
@@ -69,7 +67,6 @@ public class MiyaoImpl implements MiyaoDao {
             preparedStatement = connection.prepareStatement("UPDATE miyao SET miyao=? WHERE id = 1");
             preparedStatement.setString(1,value);
             row = preparedStatement.executeUpdate();
-            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
@@ -99,7 +96,6 @@ public class MiyaoImpl implements MiyaoDao {
                 miyao.setId(resultSet.getInt("id"));
                 miyao.setValue(resultSet.getString("value"));
             }
-            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
@@ -137,7 +133,6 @@ public class MiyaoImpl implements MiyaoDao {
                 miyao.setValue(resultSet.getString("value"));
                 miyaos.add(miyao);
             }
-            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
@@ -169,6 +164,7 @@ public class MiyaoImpl implements MiyaoDao {
         try {
             preparedStatement = connection.prepareStatement("SELECT value FROM miyao;");
             resultSet = preparedStatement.executeQuery();
+            resultSet.next();
             value = resultSet.getString("value");
         } catch (SQLException e) {
             e.printStackTrace();
