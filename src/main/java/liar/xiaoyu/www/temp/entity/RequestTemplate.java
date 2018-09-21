@@ -1,11 +1,7 @@
 package liar.xiaoyu.www.temp.entity;
 
-import com.sun.istack.internal.NotNull;
-import org.springframework.beans.factory.annotation.Required;
-
 public class RequestTemplate<T> {
     private String action;
-    @NotNull
     private String key;
     private T data;
 

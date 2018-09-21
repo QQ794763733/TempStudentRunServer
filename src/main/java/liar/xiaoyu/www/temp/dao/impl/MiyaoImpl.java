@@ -64,7 +64,7 @@ public class MiyaoImpl implements MiyaoDao {
         PreparedStatement preparedStatement = null;
         Integer row = 0;
         try {
-            preparedStatement = connection.prepareStatement("UPDATE miyao SET miyao=? WHERE id = 1");
+            preparedStatement = connection.prepareStatement("UPDATE miyao SET value=? WHERE id = 1");
             preparedStatement.setString(1,value);
             row = preparedStatement.executeUpdate();
         } catch (SQLException e) {

@@ -10,13 +10,8 @@ public class OrderServiceImpl implements OrderService {
     OrderDao orderDao = new OrderDaoImpl();
 
     @Override
-    public Boolean addOrder(Order order) {
-        Boolean flag = false;
-        Integer integer = orderDao.insertTemporder(order);
-        if(integer > 0){
-            flag = true;
-        }
-        return flag;
+    public Integer addOrder(Order order) {
+        return orderDao.insertTemporder(order);
     }
 
     @Override

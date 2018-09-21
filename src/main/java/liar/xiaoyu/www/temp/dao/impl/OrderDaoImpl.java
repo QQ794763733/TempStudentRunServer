@@ -22,11 +22,12 @@ public class OrderDaoImpl implements OrderDao {
                 order.setId(resultSet.getInt("id"));
                 order.setRidgepole(resultSet.getInt("ridgepole"));
                 order.setDorm(resultSet.getInt("dorm"));
-                order.setDorm(resultSet.getInt("dorm"));
+                order.setContact(resultSet.getString("contact"));
                 order.setInfo(resultSet.getString("info"));
                 order.setStaff(resultSet.getString("staff"));
                 order.setPhone(resultSet.getString("phone"));
                 order.setFlag(resultSet.getInt("flag"));
+                order.setDatetime(resultSet.getString("datetime"));
                 datas.add(order);
             }
         } catch (SQLException e) {
@@ -66,11 +67,12 @@ public class OrderDaoImpl implements OrderDao {
                 order.setId(resultSet.getInt("id"));
                 order.setRidgepole(resultSet.getInt("ridgepole"));
                 order.setDorm(resultSet.getInt("dorm"));
-                order.setDorm(resultSet.getInt("dorm"));
+                order.setContact(resultSet.getString("contact"));
                 order.setInfo(resultSet.getString("info"));
                 order.setStaff(resultSet.getString("staff"));
                 order.setPhone(resultSet.getString("phone"));
                 order.setFlag(resultSet.getInt("flag"));
+                order.setDatetime(resultSet.getString("datetime"));
                 datas.add(order);
             }
         } catch (SQLException e) {
@@ -110,11 +112,12 @@ public class OrderDaoImpl implements OrderDao {
                 order.setId(resultSet.getInt("id"));
                 order.setRidgepole(resultSet.getInt("ridgepole"));
                 order.setDorm(resultSet.getInt("dorm"));
-                order.setDorm(resultSet.getInt("dorm"));
+                order.setContact(resultSet.getString("contact"));
                 order.setInfo(resultSet.getString("info"));
                 order.setStaff(resultSet.getString("staff"));
                 order.setPhone(resultSet.getString("phone"));
                 order.setFlag(resultSet.getInt("flag"));
+                order.setDatetime(resultSet.getString("datetime"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -165,16 +168,19 @@ public class OrderDaoImpl implements OrderDao {
     public Integer insertTemporder(Order order) {
         Connection connection = DbcpUtil.getConnection();
         PreparedStatement preparedStatement = null;
-        Integer row = 0;
+        Integer id = 0;
         try {
-            preparedStatement = connection.prepareStatement("INSERT INTO userorder(ridgepole,dorm,info,staff,phone,flag) VALUES(?,?,?,?,?,?);");
+            preparedStatement = connection.prepareStatement("INSERT INTO userorder(ridgepole,dorm,contact,info) VALUES(?,?,?,?);",Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, order.getRidgepole());
             preparedStatement.setInt(2, order.getDorm());
-            preparedStatement.setString(3, order.getInfo());
-            preparedStatement.setString(4, order.getStaff());
-            preparedStatement.setString(5, order.getPhone());
-            preparedStatement.setInt(6, order.getFlag());
-            row = preparedStatement.executeUpdate();
+            preparedStatement.setString(3,order.getContact());
+            preparedStatement.setString(4, order.getInfo());
+            Integer row = preparedStatement.executeUpdate();
+            if(row > 0){
+                ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                generatedKeys.next();
+                id = generatedKeys.getInt(1);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }finally {
@@ -186,7 +192,7 @@ public class OrderDaoImpl implements OrderDao {
                 }
             }
         }
-        return row;
+        return id;
     }
 
     @Override
@@ -195,14 +201,11 @@ public class OrderDaoImpl implements OrderDao {
         PreparedStatement preparedStatement = null;
         Integer row = 0;
         try {
-            preparedStatement = connection.prepareStatement("UPDATE userorder SET ridgepole=?,dorm=?,info=?,staff=?,phone=?,flag=? WHERE id = ?;");
-            preparedStatement.setInt(1, order.getRidgepole());
-            preparedStatement.setInt(2, order.getDorm());
-            preparedStatement.setString(3, order.getInfo());
-            preparedStatement.setString(4, order.getStaff());
-            preparedStatement.setString(5, order.getPhone());
-            preparedStatement.setInt(6, order.getFlag());
-            preparedStatement.setInt(7, order.getId());
+            preparedStatement = connection.prepareStatement("UPDATE userorder SET staff=?,phone=?,flag=? WHERE id = ?;");
+            preparedStatement.setString(1, order.getStaff());
+            preparedStatement.setString(2, order.getPhone());
+            preparedStatement.setInt(3, order.getFlag());
+            preparedStatement.setInt(4, order.getId());
             row = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

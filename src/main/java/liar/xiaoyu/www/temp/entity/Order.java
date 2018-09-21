@@ -6,10 +6,28 @@ public class Order {
   private Integer id;
   private Integer ridgepole;
   private Integer dorm;
+  private String contact;
   private String info;
   private String staff;
   private String phone;
   private Integer flag;
+  private String datetime;
+
+  public String getContact() {
+    return contact;
+  }
+
+  public void setContact(String contact) {
+    this.contact = contact;
+  }
+
+  public String getDatetime() {
+    return datetime;
+  }
+
+  public void setDatetime(String datetime) {
+    this.datetime = datetime;
+  }
 
   public Integer getFlag() {
     return flag;

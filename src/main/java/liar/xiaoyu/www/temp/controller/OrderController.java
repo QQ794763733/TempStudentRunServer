@@ -29,12 +29,13 @@ public class OrderController {
     }
 
     @PostMapping(url)
-    public ResponseTemplate<Boolean> addOrder(@RequestBody RequestTemplate<Order> request){
-        ResponseTemplate<Boolean> message = new ResponseTemplate<>();
+    public ResponseTemplate<Integer> addOrder(@RequestBody RequestTemplate<Order> request){
+        ResponseTemplate<Integer> message = new ResponseTemplate<>();
         if(miyaoService.validationMiyao(request.getKey())){
+            Integer id = orderService.addOrder(request.getData());
             message.setSucces(true);
-            message.setMessage("增加成功！");
-            message.setData(orderService.addOrder(request.getData()));
+            message.setMessage("插入成功！");
+            message.setData(id);
         }else{
             message.setMessage("key错误！");
         }
@@ -42,12 +43,12 @@ public class OrderController {
     }
 
     @GetMapping(url+"ByRidgepole")
-    public ResponseTemplate<List<Order>> getOrderByRidgepole(@RequestBody RequestTemplate<Integer> request){
+    public ResponseTemplate<List<Order>> getOrderByRidgepole(@RequestParam("key")String key,@RequestParam("ridgepole")Integer ridgepole){
         ResponseTemplate<List<Order>> message = new ResponseTemplate<>();
-        if(miyaoService.validationMiyao(request.getKey())){
+        if(miyaoService.validationMiyao(key)){
             message.setSucces(true);
             message.setMessage("查询成功！");
-            message.setData(orderService.getOrderByRidgepole(request.getData()));
+            message.setData(orderService.getOrderByRidgepole(ridgepole));
         }else{
             message.setMessage("key错误！");
         }
