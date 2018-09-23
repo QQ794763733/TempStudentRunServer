@@ -35,6 +35,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<Order> getOrderByUUID(String uuid) {
+        return orderDao.selectAllTemporderByUUID(uuid);
+    }
+
+    @Override
     public Boolean cancelOrder(Integer id) {
         Boolean flag = false;
         Integer integer = orderDao.deleteTemporderByID(id);

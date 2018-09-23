@@ -14,3 +14,4 @@ liar\xiaoyu\www\temp\entity\Miyao.class
 liar\xiaoyu\www\temp\service\impl\MiyaoServiceImpl.class
 liar\xiaoyu\www\temp\dao\MiyaoDao.class
 liar\xiaoyu\www\temp\common\MD5Util.class
+liar\xiaoyu\www\temp\common\MyWebSocket.class

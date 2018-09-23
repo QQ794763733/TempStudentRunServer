@@ -31,6 +31,13 @@ public class MiyaoImpl implements MiyaoDao {
                     e.printStackTrace();
                 }
             }
+            if(connection!=null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return row;
     }
@@ -54,6 +61,13 @@ public class MiyaoImpl implements MiyaoDao {
                     e.printStackTrace();
                 }
             }
+            if(connection!=null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return row;
     }
@@ -73,6 +87,13 @@ public class MiyaoImpl implements MiyaoDao {
             if(preparedStatement!=null){
                 try {
                     preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(connection!=null){
+                try {
+                    connection.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -114,6 +135,13 @@ public class MiyaoImpl implements MiyaoDao {
                     e.printStackTrace();
                 }
             }
+            if(connection!=null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return miyao;
     }
@@ -151,6 +179,13 @@ public class MiyaoImpl implements MiyaoDao {
                     e.printStackTrace();
                 }
             }
+            if(connection!=null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return miyaos;
     }
@@ -180,6 +215,13 @@ public class MiyaoImpl implements MiyaoDao {
             if(preparedStatement!=null){
                 try {
                     preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(connection!=null){
+                try {
+                    connection.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

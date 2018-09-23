@@ -13,5 +13,7 @@ public interface OrderService {
 
     List<Order> getOrderByRidgepole(Integer Ridgepole);
 
+    List<Order> getOrderByUUID(String uuid);
+
     Boolean cancelOrder(Integer id);
 }

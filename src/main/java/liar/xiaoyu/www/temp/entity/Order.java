@@ -4,6 +4,7 @@ package liar.xiaoyu.www.temp.entity;
 public class Order {
 
   private Integer id;
+  private String uuid;
   private Integer ridgepole;
   private Integer dorm;
   private String contact;
@@ -12,6 +13,14 @@ public class Order {
   private String phone;
   private Integer flag;
   private String datetime;
+
+  public String getUuid() {
+    return uuid;
+  }
+
+  public void setUuid(String uuid) {
+    this.uuid = uuid;
+  }
 
   public String getContact() {
     return contact;

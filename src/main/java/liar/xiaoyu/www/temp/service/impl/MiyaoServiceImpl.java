@@ -24,7 +24,7 @@ public class MiyaoServiceImpl implements MiyaoService {
     @Override
     public Boolean validationMiyao(String value) {
         Boolean flag = false;
-        if(value.equals(miyaoDao.selectMiyaoValue())){
+        if(value != null &&value.equals(miyaoDao.selectMiyaoValue())){
             flag = true;
         }
         return flag;
