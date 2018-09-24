@@ -25,6 +25,6 @@
 
     <servlet-mapping>
         <servlet-name>StudentRun-Server</servlet-name>
-        <url-pattern>/Api/*</url-pattern>
+        <url-pattern>/xiaoyu/Api/*</url-pattern>
     </servlet-mapping>
 </web-app>
